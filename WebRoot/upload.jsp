@@ -16,7 +16,7 @@
 
 <%
 	String contentType = request.getContentType();
-
+	int a = application.getRealPath("/").indexOf("webapps");
 	if (contentType.indexOf("multipart/form-data") >= 0) {
 		Result result = new Result();
 		result.avatarUrls = new ArrayList<String>();
@@ -75,9 +75,10 @@
 				}
 				inputStream = new BufferedInputStream(
 						fileItem.openStream());
+				System.out.println(application.getRealPath("/"));
 				outputStream = new BufferedOutputStream(
 						new FileOutputStream(application.getRealPath(
-								"/").substring(0, 18)
+								"/").substring(0, a + 7)
 								+ "/docs/upload/"
 								+ virtualPath.replace("/", "\\")));
 				Streams.copy(inputStream, outputStream, true);
@@ -118,15 +119,15 @@
 		//System.out.println(currUser.getUicon1());
 		if (!currUser.getUicon1().equals("1_defaultIcon.jpg")) {
 			File file1 = new File(application.getRealPath("/")
-					.substring(0, 18)
+					.substring(0, a + 7)
 					+ "/docs/upload/"
 					+ currUser.getUicon1());
 			File file2 = new File(application.getRealPath("/")
-					.substring(0, 18)
+					.substring(0, a + 7)
 					+ "/docs/upload/"
 					+ currUser.getUicon2());
 			File file3 = new File(application.getRealPath("/")
-					.substring(0, 18)
+					.substring(0, a + 7)
 					+ "/docs/upload/"
 					+ currUser.getUicon3());
 			file1.delete();
@@ -137,11 +138,13 @@
 			currUser.setUicon2(result.avatarUrls.get(1));
 			currUser.setUicon3(result.avatarUrls.get(2));
 			userService.updateObject(currUser);
+			session.setAttribute("uIcon", result.avatarUrls.get(2));
 		} else {
 			currUser.setUicon1(result.avatarUrls.get(0));
 			currUser.setUicon2(result.avatarUrls.get(1));
 			currUser.setUicon3(result.avatarUrls.get(2));
 			userService.updateObject(currUser);
+			session.setAttribute("uIcon", result.avatarUrls.get(2));
 		}
 
 		//返回图片的保存结果（返回内容为json字符串，可自行构造，该处使用fastjson构造）
