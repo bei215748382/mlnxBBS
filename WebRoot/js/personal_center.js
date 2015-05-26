@@ -32,3 +32,21 @@ function openpage(command) {
 	}
 
 }
+
+function load(page){
+	if(page=="base"){
+		$("#changePage").openpage("base");
+	}
+	if(page=="contact"){
+		$("#changePage").load("contact.jsp");
+	}
+	if(page=="education"){
+		$("#changePage").load("education.jsp");
+	}
+	if(page=="work"){
+		$("#changePage").load("work.jsp");
+	}
+	if(page=="personal"){
+		$("#changePage").load("personal.jsp");
+	}
+}

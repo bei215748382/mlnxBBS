@@ -9,11 +9,11 @@
         <h1 class="mt">个人资料</h1>
         <!--don't close the div here-->
         <ul class="tb cl">
-          <li><a href="#">基本资料</a></li>
-          <li><a href="#">联系方式</a></li>
-          <li><a href="#">教育情况</a></li>
-          <li><a href="#">工作情况</a></li>
-          <li><a href="#">个人信息</a></li>
+          <li class="a"><a href="#maincontent">基本资料</a></li>
+          <li><a href="#maincontent" onclick="load('contact')">联系方式</a></li>
+          <li><a  href="#maincontent" onclick="load('education')">教育情况</a></li>
+          <li><a  href="#maincontent" onclick="load('work')">工作情况</a></li>
+          <li><a  href="#maincontent" onclick="load('personal')">个人信息</a></li>
         </ul>
         <c:if test="${info==false }">
           <form action="bbs!saveBase.action" method="post">
