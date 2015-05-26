@@ -1,3 +1,7 @@
+$(function(){
+	openpage("all");
+});
+
 //ajxa通用代码
 function loadPage(url, dataName, id) {
 	$.ajax({
@@ -18,8 +22,11 @@ function loadPage(url, dataName, id) {
 function openpage(command) {
 
 	if (command == "img") {
-		loadPage("ajax!showModifyUicon.action", null, "changePage");
+		$("#imgContent").css("display","block");
+		$("#maincontent").css("display","none");
 	} else {
+		$("#maincontent").css("display","block");
+		$("#imgContent").css("display","none");
 		var dataName = eval('(' + "{command : command}" + ')');
 		loadPage("ajax!showModify.action", dataName, "maincontent");
 	}

@@ -75,7 +75,6 @@
 				}
 				inputStream = new BufferedInputStream(
 						fileItem.openStream());
-				System.out.println(application.getRealPath("/"));
 				outputStream = new BufferedOutputStream(
 						new FileOutputStream(application.getRealPath(
 								"/").substring(0, a + 7)

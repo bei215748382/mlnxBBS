@@ -60,8 +60,8 @@
             <ul>
               <li><em class="xg1">用户组&nbsp;&nbsp;</em><span
                 style="color:" class="xi2" tip="积分 6, 距离下一级还需 494 积分"><a
-                  href="#" target="_top">飞行学员</a></span> <img
-                src="common_10_usergroup_icon.png" alt="" class="vm">
+                  href="#" target="_top">飞行学员</a></span> 
+<!--                   <img src="common_10_usergroup_icon.png" alt="头像" class="vm"> -->
               </li>
             </ul>
             <ul id="pbbs" class="pf_l">

@@ -46,6 +46,12 @@ body {
   display: block;
 }
 
+.h-change-avatar {
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+}
+
 #personal-list>ul>li>span,.mg-left-15 {
   margin-left: 15px;
 }

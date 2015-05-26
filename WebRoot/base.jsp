@@ -15,8 +15,6 @@
           <li><a href="#">工作情况</a></li>
           <li><a href="#">个人信息</a></li>
         </ul>
-        <iframe src="index_1.html" id="frame_profile"
-          name="frame_profile" style="display: none;"></iframe>
         <c:if test="${info==false }">
           <form action="bbs!saveBase.action" method="post">
             <input value="17b588b1" name="formhash" type="hidden">
@@ -469,12 +467,12 @@
         </c:if>
       </div>
     </div>
-    <div class="appl">
+    <div class="appl"  style="margin: 0 auto; text-align: center">
       <div class="h-home-left">
         <h2 class="mt bbda">设置</h2>
         <ul>
           <li><a href="#maincontent" onclick="openpage('img')">修改头像</a></li>
-          <li><a href="#maincontent" onclick="openpage('base')">个人资料</a></li>
+          <li class="a"><a href="#maincontent" onclick="openpage('base')">个人资料</a></li>
           <li><a href="#maincontent">积分</a></li>
           <li><a href="#maincontent">用户组</a></li>
           <li><a href="#maincontent">隐私筛选</a></li>
