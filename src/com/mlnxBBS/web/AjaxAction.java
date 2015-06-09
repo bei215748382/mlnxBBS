@@ -22,7 +22,11 @@ import com.mlnxBBS.core.Praise;
 import com.mlnxBBS.core.Province;
 import com.mlnxBBS.core.Response;
 import com.mlnxBBS.core.User;
-import com.mlnxBBS.core.Userinfo;
+import com.mlnxBBS.core.Userinfo1;
+import com.mlnxBBS.core.Userinfo2;
+import com.mlnxBBS.core.Userinfo3;
+import com.mlnxBBS.core.Userinfo4;
+import com.mlnxBBS.core.Userinfo5;
 import com.mlnxBBS.service.CollectionService;
 import com.mlnxBBS.service.PageService;
 import com.mlnxBBS.service.PostService;
@@ -590,9 +594,10 @@ public class AjaxAction extends BaseAction {
 			request.setAttribute("user", user);
 
 			boolean info = false;
-			if (user.getUserinfos().size() > 0) {
-				Userinfo userinfo = (Userinfo) user.getUserinfos().toArray()[0];
-				request.setAttribute("userinfo", userinfo);
+			if (user.getUserinfo1s().size() > 0) {
+				Userinfo1 userinfo1 = (Userinfo1) user.getUserinfo1s()
+						.toArray()[0];
+				request.setAttribute("userinfo1", userinfo1);
 				info = true;
 			}
 			@SuppressWarnings("unchecked")
@@ -602,12 +607,55 @@ public class AjaxAction extends BaseAction {
 			request.setAttribute("info", info);
 			this.forward("base.jsp");
 		}
+		if (command.equals("contact")) {
+			User user = userService.findById((int) session.getAttribute("uId"));
+			boolean info = false;
+			if (user.getUserinfo2s().size() > 0) {
+				Userinfo2 userinfo2 = (Userinfo2) user.getUserinfo2s()
+						.toArray()[0];
+				request.setAttribute("userinfo2", userinfo2);
+				info = true;
+			}
+			request.setAttribute("info", info);
+			this.forward("contact.jsp");
+		}
+		if (command.equals("education")) {
+			User user = userService.findById((int) session.getAttribute("uId"));
+			boolean info = false;
+			if (user.getUserinfo3s().size() > 0) {
+				Userinfo3 userinfo3 = (Userinfo3) user.getUserinfo3s()
+						.toArray()[0];
+				request.setAttribute("userinfo3", userinfo3);
+				info = true;
+			}
+			request.setAttribute("info", info);
+			this.forward("education.jsp");
+		}
+		if (command.equals("work")) {
+			User user = userService.findById((int) session.getAttribute("uId"));
+			boolean info = false;
+			if (user.getUserinfo4s().size() > 0) {
+				Userinfo4 userinfo4 = (Userinfo4) user.getUserinfo4s()
+						.toArray()[0];
+				request.setAttribute("userinfo4", userinfo4);
+				info = true;
+			}
+			request.setAttribute("info", info);
+			this.forward("work.jsp");
+		}
+		if (command.equals("personal")) {
+			User user = userService.findById((int) session.getAttribute("uId"));
+			boolean info = false;
+			if (user.getUserinfo5s().size() > 0) {
+				Userinfo5 userinfo5 = (Userinfo5) user.getUserinfo5s()
+						.toArray()[0];
+				request.setAttribute("userinfo5", userinfo5);
+				info = true;
+			}
+			request.setAttribute("info", info);
+			this.forward("personal.jsp");
+		}
+
 	}
 
-	/**
-	 * 修改个人头像
-	 */
-	public void showModifyUicon() {
-		this.forward("test.jsp");
-	}
 }

@@ -12,11 +12,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 /**
- * Userinfo entity. @author MyEclipse Persistence Tools
+ * Userinfo1 entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "userinfo", catalog = "mlnx", uniqueConstraints = @UniqueConstraint(columnNames = "uId"))
-public class Userinfo implements java.io.Serializable {
+@Table(name = "userinfo1", catalog = "mlnx", uniqueConstraints = @UniqueConstraint(columnNames = "uId"))
+public class Userinfo1 implements java.io.Serializable {
 
 	// Fields
 
@@ -33,16 +33,16 @@ public class Userinfo implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Userinfo() {
+	public Userinfo1() {
 	}
 
 	/** minimal constructor */
-	public Userinfo(User user) {
+	public Userinfo1(User user) {
 		this.user = user;
 	}
 
 	/** full constructor */
-	public Userinfo(User user, String urealname, String usex,
+	public Userinfo1(User user, String urealname, String usex,
 			String uresidence, String ubirthday, String ubirthplace,
 			String uremark1, String uremark2) {
 		this.user = user;

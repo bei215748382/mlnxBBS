@@ -36,10 +36,14 @@ public class User implements java.io.Serializable {
 	private Integer uscore;
 	private Integer ustatus;
 	private Set<Collection> collections = new HashSet<Collection>(0);
-	private Set<Userinfo> userinfos = new HashSet<Userinfo>(0);
 	private Set<Response> responsesForReplyerId = new HashSet<Response>(0);
 	private Set<Praise> praises = new HashSet<Praise>(0);
+	private Set<Userinfo3> userinfo3s = new HashSet<Userinfo3>(0);
+	private Set<Userinfo1> userinfo1s = new HashSet<Userinfo1>(0);
+	private Set<Userinfo2> userinfo2s = new HashSet<Userinfo2>(0);
 	private Set<Response> responsesForToUid = new HashSet<Response>(0);
+	private Set<Userinfo5> userinfo5s = new HashSet<Userinfo5>(0);
+	private Set<Userinfo4> userinfo4s = new HashSet<Userinfo4>(0);
 	private Set<Post> posts = new HashSet<Post>(0);
 
 	// Constructors
@@ -70,8 +74,10 @@ public class User implements java.io.Serializable {
 			String uicon1, String uicon2, String uicon3, Integer historyDays,
 			Integer runningDays, Timestamp signInTime, Integer uscore,
 			Integer ustatus, Set<Collection> collections,
-			Set<Userinfo> userinfos, Set<Response> responsesForReplyerId,
-			Set<Praise> praises, Set<Response> responsesForToUid,
+			Set<Response> responsesForReplyerId, Set<Praise> praises,
+			Set<Userinfo3> userinfo3s, Set<Userinfo1> userinfo1s,
+			Set<Userinfo2> userinfo2s, Set<Response> responsesForToUid,
+			Set<Userinfo5> userinfo5s, Set<Userinfo4> userinfo4s,
 			Set<Post> posts) {
 		this.uname = uname;
 		this.upass = upass;
@@ -86,10 +92,14 @@ public class User implements java.io.Serializable {
 		this.uscore = uscore;
 		this.ustatus = ustatus;
 		this.collections = collections;
-		this.userinfos = userinfos;
 		this.responsesForReplyerId = responsesForReplyerId;
 		this.praises = praises;
+		this.userinfo3s = userinfo3s;
+		this.userinfo1s = userinfo1s;
+		this.userinfo2s = userinfo2s;
 		this.responsesForToUid = responsesForToUid;
+		this.userinfo5s = userinfo5s;
+		this.userinfo4s = userinfo4s;
 		this.posts = posts;
 	}
 
@@ -220,14 +230,6 @@ public class User implements java.io.Serializable {
 	public void setCollections(Set<Collection> collections) {
 		this.collections = collections;
 	}
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Userinfo> getUserinfos() {
-		return this.userinfos;
-	}
-
-	public void setUserinfos(Set<Userinfo> userinfos) {
-		this.userinfos = userinfos;
-	}
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userByReplyerId")
 	public Set<Response> getResponsesForReplyerId() {
 		return this.responsesForReplyerId;
@@ -244,6 +246,30 @@ public class User implements java.io.Serializable {
 	public void setPraises(Set<Praise> praises) {
 		this.praises = praises;
 	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Userinfo3> getUserinfo3s() {
+		return this.userinfo3s;
+	}
+
+	public void setUserinfo3s(Set<Userinfo3> userinfo3s) {
+		this.userinfo3s = userinfo3s;
+	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Userinfo1> getUserinfo1s() {
+		return this.userinfo1s;
+	}
+
+	public void setUserinfo1s(Set<Userinfo1> userinfo1s) {
+		this.userinfo1s = userinfo1s;
+	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Userinfo2> getUserinfo2s() {
+		return this.userinfo2s;
+	}
+
+	public void setUserinfo2s(Set<Userinfo2> userinfo2s) {
+		this.userinfo2s = userinfo2s;
+	}
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userByToUid")
 	public Set<Response> getResponsesForToUid() {
 		return this.responsesForToUid;
@@ -251,6 +277,22 @@ public class User implements java.io.Serializable {
 
 	public void setResponsesForToUid(Set<Response> responsesForToUid) {
 		this.responsesForToUid = responsesForToUid;
+	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Userinfo5> getUserinfo5s() {
+		return this.userinfo5s;
+	}
+
+	public void setUserinfo5s(Set<Userinfo5> userinfo5s) {
+		this.userinfo5s = userinfo5s;
+	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Userinfo4> getUserinfo4s() {
+		return this.userinfo4s;
+	}
+
+	public void setUserinfo4s(Set<Userinfo4> userinfo4s) {
+		this.userinfo4s = userinfo4s;
 	}
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<Post> getPosts() {

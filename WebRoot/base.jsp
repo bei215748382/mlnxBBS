@@ -10,10 +10,11 @@
         <!--don't close the div here-->
         <ul class="tb cl">
           <li class="a"><a href="#maincontent">基本资料</a></li>
-          <li><a href="#maincontent" onclick="load('contact')">联系方式</a></li>
-          <li><a  href="#maincontent" onclick="load('education')">教育情况</a></li>
-          <li><a  href="#maincontent" onclick="load('work')">工作情况</a></li>
-          <li><a  href="#maincontent" onclick="load('personal')">个人信息</a></li>
+          <li><a href="#maincontent" onclick="openpage('contact')">联系方式</a></li>
+          <li><a href="#maincontent"
+            onclick="openpage('education')">教育情况</a></li>
+          <li><a href="#maincontent" onclick="openpage('work')">工作情况</a></li>
+          <li><a href="#maincontent" onclick="openpage('personal')">个人信息</a></li>
         </ul>
         <c:if test="${info==false }">
           <form action="bbs!saveBase.action" method="post">
@@ -199,25 +200,25 @@
                   <th id="th_realname">真实姓名</th>
                   <td id="td_realname"><input name="realname"
                     id="realname" class="px"
-                    value="${userinfo.urealname.substring(2) }"
+                    value="${userinfo1.urealname.substring(2) }"
                     tabindex="1" type="text">
                     <div class="rq mtn" id="showerror_realname"></div>
                     <p class="d"></p></td>
                   <td class="p"><select name="privacy_realname">
                       <c:if
-                        test="${userinfo.urealname.substring(0, 1)=='0' }">
+                        test="${userinfo1.urealname.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.urealname.substring(0, 1)=='1' }">
+                        test="${userinfo1.urealname.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.urealname.substring(0, 1)=='3' }">
+                        test="${userinfo1.urealname.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -228,17 +229,17 @@
                   <th id="th_gender">性别</th>
                   <td id="td_gender"><select name="gender"
                     id="gender" class="ps" tabindex="1">
-                      <c:if test="${userinfo.usex.substring(2)=='保密' }">
+                      <c:if test="${userinfo1.usex.substring(2)=='保密' }">
                         <option value="保密" selected="selected">保密</option>
                         <option value="男">男</option>
                         <option value="女">女</option>
                       </c:if>
-                      <c:if test="${userinfo.usex.substring(2)=='男' }">
+                      <c:if test="${userinfo1.usex.substring(2)=='男' }">
                         <option value="保密">保密</option>
                         <option value="男" selected="selected">男</option>
                         <option value="女">女</option>
                       </c:if>
-                      <c:if test="${userinfo.usex.substring(2)=='女' }">
+                      <c:if test="${userinfo1.usex.substring(2)=='女' }">
                         <option value="保密">保密</option>
                         <option value="男">男</option>
                         <option value="女" selected="selected">女</option>
@@ -248,19 +249,19 @@
                     <p class="d"></p></td>
                   <td class="p"><select name="privacy_gender">
                       <c:if
-                        test="${userinfo.usex.substring(0, 1)=='0' }">
+                        test="${userinfo1.usex.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.usex.substring(0, 1)=='1' }">
+                        test="${userinfo1.usex.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.usex.substring(0, 1)=='3' }">
+                        test="${userinfo1.usex.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -277,13 +278,13 @@
                         tabindex="1">
                         <c:forEach items="${provinces }" var="prov">
                           <c:if
-                            test="${prov.provinceId==userinfo.uresidence.substring(2) }">
+                            test="${prov.provinceId==userinfo1.uresidence.substring(2) }">
                             <option value="${prov.provinceId }"
                               selected="selected">${prov.provinceName
                               }</option>
                           </c:if>
                           <c:if
-                            test="${prov.provinceId!=userinfo.uresidence.substring(2) }">
+                            test="${prov.provinceId!=userinfo1.uresidence.substring(2) }">
                             <option value="${prov.provinceId }">${prov.provinceName
                               }</option>
                           </c:if>
@@ -295,19 +296,19 @@
                   </td>
                   <td class="p"><select name="privacy_residecity">
                       <c:if
-                        test="${userinfo.uresidence.substring(0, 1)=='0' }">
+                        test="${userinfo1.uresidence.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.uresidence.substring(0, 1)=='1' }">
+                        test="${userinfo1.uresidence.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.uresidence.substring(0, 1)=='3' }">
+                        test="${userinfo1.uresidence.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -317,29 +318,29 @@
                 <tr id="tr_birthday">
                   <th id="th_birthday">生日</th>
                   <td id="td_birthday"><c:if
-                      test="${userinfo.ubirthday.substring(2)=='null' }">
+                      test="${userinfo1.ubirthday.substring(2)=='null' }">
                       <input type="date" name="birthday" value="">
                     </c:if> <c:if
-                      test="${userinfo.ubirthday.substring(2)!='null' }">
+                      test="${userinfo1.ubirthday.substring(2)!='null' }">
                       <input type="date" name="birthday"
-                        value="${userinfo.ubirthday.substring(2, 12) }">
+                        value="${userinfo1.ubirthday.substring(2, 12) }">
                     </c:if>
                     <p class="d"></p></td>
                   <td class="p"><select name="privacy_birthday">
                       <c:if
-                        test="${userinfo.ubirthday.substring(0, 1)=='0' }">
+                        test="${userinfo1.ubirthday.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.ubirthday.substring(0, 1)=='1' }">
+                        test="${userinfo1.ubirthday.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.ubirthday.substring(0, 1)=='3' }">
+                        test="${userinfo1.ubirthday.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -356,13 +357,13 @@
                         tabindex="1"><c:forEach
                           items="${provinces }" var="prov">
                           <c:if
-                            test="${prov.provinceId==userinfo.ubirthplace.substring(2) }">
+                            test="${prov.provinceId==userinfo1.ubirthplace.substring(2) }">
                             <option value="${prov.provinceId }"
                               selected="selected">${prov.provinceName
                               }</option>
                           </c:if>
                           <c:if
-                            test="${prov.provinceId!=userinfo.ubirthplace.substring(2) }">
+                            test="${prov.provinceId!=userinfo1.ubirthplace.substring(2) }">
                             <option value="${prov.provinceId }">${prov.provinceName
                               }</option>
                           </c:if>
@@ -373,19 +374,19 @@
                   </td>
                   <td class="p"><select name="privacy_birthcity">
                       <c:if
-                        test="${userinfo.ubirthplace.substring(0, 1)=='0' }">
+                        test="${userinfo1.ubirthplace.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.ubirthplace.substring(0, 1)=='1' }">
+                        test="${userinfo1.ubirthplace.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.ubirthplace.substring(0, 1)=='3' }">
+                        test="${userinfo1.ubirthplace.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -397,26 +398,26 @@
                   <td id="td_affectivestatus"><input
                     name="affectivestatus" id="affectivestatus"
                     class="px"
-                    value="${userinfo.uremark1.substring(2) }"
+                    value="${userinfo1.uremark1.substring(2) }"
                     tabindex="1" type="text">
                     <div class="rq mtn" id="showerror_affectivestatus"></div>
                     <p class="d"></p></td>
                   <td class="p"><select
                     name="privacy_affectivestatus">
                       <c:if
-                        test="${userinfo.uremark1.substring(0, 1)=='0' }">
+                        test="${userinfo1.uremark1.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.uremark1.substring(0, 1)=='1' }">
+                        test="${userinfo1.uremark1.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.uremark1.substring(0, 1)=='3' }">
+                        test="${userinfo1.uremark1.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -427,25 +428,25 @@
                   <th id="th_lookingfor">交友目的</th>
                   <td id="td_lookingfor"><input name="lookingfor"
                     id="lookingfor" class="px"
-                    value="${userinfo.uremark2.substring(2) }"
+                    value="${userinfo1.uremark2.substring(2) }"
                     tabindex="1" type="text">
                     <div class="rq mtn" id="showerror_lookingfor"></div>
                     <p class="d"></p></td>
                   <td class="p"><select name="privacy_lookingfor">
                       <c:if
-                        test="${userinfo.uremark2.substring(0, 1)=='0' }">
+                        test="${userinfo1.uremark2.substring(0, 1)=='0' }">
                         <option value="0" selected="selected">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.uremark2.substring(0, 1)=='1' }">
+                        test="${userinfo1.uremark2.substring(0, 1)=='1' }">
                         <option value="0">公开</option>
                         <option value="1" selected="selected">好友可见</option>
                         <option value="3">保密</option>
                       </c:if>
                       <c:if
-                        test="${userinfo.uremark2.substring(0, 1)=='3' }">
+                        test="${userinfo1.uremark2.substring(0, 1)=='3' }">
                         <option value="0">公开</option>
                         <option value="1">好友可见</option>
                         <option value="3" selected="selected">保密</option>
@@ -467,12 +468,13 @@
         </c:if>
       </div>
     </div>
-    <div class="appl"  style="margin: 0 auto; text-align: center">
+    <div class="appl" style="margin: 0 auto; text-align: center">
       <div class="h-home-left">
         <h2 class="mt bbda">设置</h2>
         <ul>
           <li><a href="#maincontent" onclick="openpage('img')">修改头像</a></li>
-          <li class="a"><a href="#maincontent" onclick="openpage('base')">个人资料</a></li>
+          <li class="a"><a href="#maincontent"
+            onclick="openpage('base')">个人资料</a></li>
           <li><a href="#maincontent">积分</a></li>
           <li><a href="#maincontent">用户组</a></li>
           <li><a href="#maincontent">隐私筛选</a></li>

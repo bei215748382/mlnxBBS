@@ -23,12 +23,20 @@ import com.mlnxBBS.service.PraiseService;
 import com.mlnxBBS.service.QrcodeService;
 import com.mlnxBBS.service.ResponseService;
 import com.mlnxBBS.service.UserService;
-import com.mlnxBBS.service.UserinfoService;
+import com.mlnxBBS.service.Userinfo1Service;
+import com.mlnxBBS.service.Userinfo2Service;
+import com.mlnxBBS.service.Userinfo3Service;
+import com.mlnxBBS.service.Userinfo4Service;
+import com.mlnxBBS.service.Userinfo5Service;
 import com.mlnxBBS.tool.MD5;
 import com.mlnxBBS.core.PageBean;
 import com.mlnxBBS.core.Post;
 import com.mlnxBBS.core.User;
-import com.mlnxBBS.core.Userinfo;
+import com.mlnxBBS.core.Userinfo1;
+import com.mlnxBBS.core.Userinfo2;
+import com.mlnxBBS.core.Userinfo3;
+import com.mlnxBBS.core.Userinfo4;
+import com.mlnxBBS.core.Userinfo5;
 
 public class BBSAction extends BaseAction {
 	HeaderService headerService = new HeaderService();
@@ -43,7 +51,11 @@ public class BBSAction extends BaseAction {
 	EventService eventService = new EventService();
 	ResponseService responseService = new ResponseService();
 	PraiseService praiseService = new PraiseService();
-	UserinfoService userinfoService = new UserinfoService();
+	Userinfo1Service userinfo1Service = new Userinfo1Service();
+	Userinfo2Service userinfo2Service = new Userinfo2Service();
+	Userinfo3Service userinfo3Service = new Userinfo3Service();
+	Userinfo4Service userinfo4Service = new Userinfo4Service();
+	Userinfo5Service userinfo5Service = new Userinfo5Service();
 
 	/**
 	 * 显示论坛主页
@@ -875,7 +887,7 @@ public class BBSAction extends BaseAction {
 	}
 
 	/**
-	 * 保存基本资料
+	 * 个人中心保存基本资料
 	 * 
 	 * @throws IOException
 	 */
@@ -898,37 +910,187 @@ public class BBSAction extends BaseAction {
 		User currUser = userService.findById((int) session.getAttribute("uId"));
 		currUser.setUagname(uagname);
 		userService.updateObject(currUser);
-		Set<Userinfo> curUserinfos = currUser.getUserinfos();
-		if (curUserinfos.size() < 1) {
-			Userinfo newUserinfo = new Userinfo();
-			newUserinfo.setUser(currUser);
-			newUserinfo.setUrealname(privacy_realname + "_" + realname);
-			newUserinfo.setUsex(privacy_gender + "_" + gender);
-			newUserinfo
-					.setUresidence(privacy_residecity + "_" + resideprovince);
-			newUserinfo.setUbirthday(privacy_birthday + "_" + birthday);
-			newUserinfo.setUbirthplace(privacy_birthcity + "_" + birthprovince);
-			newUserinfo.setUremark1(privacy_affectivestatus + "_"
+		Set<Userinfo1> curUserinfo1s = currUser.getUserinfo1s();
+		if (curUserinfo1s.size() < 1) {
+			Userinfo1 newUserinfo1 = new Userinfo1();
+			newUserinfo1.setUser(currUser);
+			newUserinfo1.setUrealname(privacy_realname + "_" + realname);
+			newUserinfo1.setUsex(privacy_gender + "_" + gender);
+			newUserinfo1.setUresidence(privacy_residecity + "_"
+					+ resideprovince);
+			newUserinfo1.setUbirthday(privacy_birthday + "_" + birthday);
+			newUserinfo1
+					.setUbirthplace(privacy_birthcity + "_" + birthprovince);
+			newUserinfo1.setUremark1(privacy_affectivestatus + "_"
 					+ affectivestatus);
-			newUserinfo.setUremark2(privacy_lookingfor + "_" + lookingfor);
+			newUserinfo1.setUremark2(privacy_lookingfor + "_" + lookingfor);
 
-			userinfoService.save(newUserinfo);
+			userinfo1Service.save(newUserinfo1);
 		} else {
-			Userinfo newUserinfo = (Userinfo) curUserinfos.toArray()[0];
-			newUserinfo.setUrealname(privacy_realname + "_" + realname);
-			newUserinfo.setUsex(privacy_gender + "_" + gender);
-			newUserinfo
-					.setUresidence(privacy_residecity + "_" + resideprovince);
-			newUserinfo.setUbirthday(privacy_birthday + "_" + birthday);
-			newUserinfo.setUbirthplace(privacy_birthcity + "_" + birthprovince);
-			newUserinfo.setUremark1(privacy_affectivestatus + "_"
+			Userinfo1 newUserinfo1 = (Userinfo1) curUserinfo1s.toArray()[0];
+			newUserinfo1.setUrealname(privacy_realname + "_" + realname);
+			newUserinfo1.setUsex(privacy_gender + "_" + gender);
+			newUserinfo1.setUresidence(privacy_residecity + "_"
+					+ resideprovince);
+			newUserinfo1.setUbirthday(privacy_birthday + "_" + birthday);
+			newUserinfo1
+					.setUbirthplace(privacy_birthcity + "_" + birthprovince);
+			newUserinfo1.setUremark1(privacy_affectivestatus + "_"
 					+ affectivestatus);
-			newUserinfo.setUremark2(privacy_lookingfor + "_" + lookingfor);
+			newUserinfo1.setUremark2(privacy_lookingfor + "_" + lookingfor);
 
-			userinfoService.updateObject(newUserinfo);
+			userinfo1Service.updateObject(newUserinfo1);
 
 		}
 		session.setAttribute("uAgname", uagname);
+		response.sendRedirect("bbs!showPersonalCenter.action");
+	}
+
+	/**
+	 * 个人中心保存联系方式
+	 * 
+	 * @throws IOException
+	 */
+	public String mobile;
+	public int privacy_mobile;
+	public String qq;
+	public int privacy_qq;
+	public String field1;
+	public int privacy_field1;
+	public String telephone;
+	public int privacy_telephone;
+	public String msn;
+	public int privacy_msn;
+	public String taobao;
+	public int privacy_taobao;
+	public void saveContact() throws IOException {
+		User currUser = userService.findById((int) session.getAttribute("uId"));
+		Set<Userinfo2> curUserinfo2s = currUser.getUserinfo2s();
+		if (curUserinfo2s.size() < 1) {
+			Userinfo2 newUserinfo2 = new Userinfo2();
+			newUserinfo2.setUser(currUser);
+			newUserinfo2.setUmobile(privacy_mobile + "_" + mobile);
+			newUserinfo2.setUqq(privacy_qq + "_" + qq);
+			newUserinfo2.setUemail(privacy_field1 + "_" + field1);
+			newUserinfo2.setUtelephone(privacy_telephone + "_" + telephone);
+			newUserinfo2.setUmsn(privacy_msn + "_" + msn);
+			newUserinfo2.setUtaobao(privacy_taobao + "_" + taobao);
+			userinfo2Service.save(newUserinfo2);
+		} else {
+			Userinfo2 newUserinfo2 = (Userinfo2) curUserinfo2s.toArray()[0];
+			newUserinfo2.setUmobile(privacy_mobile + "_" + mobile);
+			newUserinfo2.setUqq(privacy_qq + "_" + qq);
+			newUserinfo2.setUemail(privacy_field1 + "_" + field1);
+			newUserinfo2.setUtelephone(privacy_telephone + "_" + telephone);
+			newUserinfo2.setUmsn(privacy_msn + "_" + msn);
+			newUserinfo2.setUtaobao(privacy_taobao + "_" + taobao);
+
+			userinfo2Service.updateObject(newUserinfo2);
+
+		}
+		response.sendRedirect("bbs!showPersonalCenter.action");
+	}
+
+	/**
+	 * 个人中心保存教育信息
+	 * 
+	 * @throws IOException
+	 */
+	public String education;
+	public int privacy_education;
+	public String graduateschool;
+	public int privacy_graduateschool;
+	public void saveEducation() throws IOException {
+		User currUser = userService.findById((int) session.getAttribute("uId"));
+		Set<Userinfo3> curUserinfo3s = currUser.getUserinfo3s();
+		if (curUserinfo3s.size() < 1) {
+			Userinfo3 newUserinfo3 = new Userinfo3();
+			newUserinfo3.setUser(currUser);
+			newUserinfo3.setUeducation(privacy_education + "_" + education);
+			newUserinfo3.setUschool(privacy_graduateschool + "_"
+					+ graduateschool);
+			userinfo3Service.save(newUserinfo3);
+		} else {
+			Userinfo3 newUserinfo3 = (Userinfo3) curUserinfo3s.toArray()[0];
+			newUserinfo3.setUeducation(privacy_education + "_" + education);
+			newUserinfo3.setUschool(privacy_graduateschool + "_"
+					+ graduateschool);
+
+			userinfo3Service.updateObject(newUserinfo3);
+
+		}
+		response.sendRedirect("bbs!showPersonalCenter.action");
+	}
+
+	/**
+	 * 个人中心保存工作信息
+	 * 
+	 * @throws IOException
+	 */
+	public String company;
+	public int privacy_company;
+	public String occupation;
+	public int privacy_occupation;
+	public String position;
+	public int privacy_position;
+	public String revenue;
+	public int privacy_revenue;
+	public void saveWork() throws IOException {
+		User currUser = userService.findById((int) session.getAttribute("uId"));
+		Set<Userinfo4> curUserinfo4s = currUser.getUserinfo4s();
+		if (curUserinfo4s.size() < 1) {
+			Userinfo4 newUserinfo4 = new Userinfo4();
+			newUserinfo4.setUser(currUser);
+			newUserinfo4.setUcompany(privacy_company + "_" + company);
+			newUserinfo4.setUoccupation(privacy_occupation + "_" + occupation);
+			newUserinfo4.setUposition(privacy_position + "_" + position);
+			newUserinfo4.setUrevenue(privacy_revenue + "_" + revenue);
+			userinfo4Service.save(newUserinfo4);
+		} else {
+			Userinfo4 newUserinfo4 = (Userinfo4) curUserinfo4s.toArray()[0];
+			newUserinfo4.setUcompany(privacy_company + "_" + company);
+			newUserinfo4.setUoccupation(privacy_occupation + "_" + occupation);
+			newUserinfo4.setUposition(privacy_position + "_" + position);
+			newUserinfo4.setUrevenue(privacy_revenue + "_" + revenue);
+			userinfo4Service.updateObject(newUserinfo4);
+
+		}
+		response.sendRedirect("bbs!showPersonalCenter.action");
+	}
+
+	/**
+	 * 个人中心保存个人信息
+	 * 
+	 * @throws IOException
+	 */
+	public String address;
+	public int privacy_address;
+	public String zipcode;
+	public int privacy_zipcode;
+	public String bio;
+	public int privacy_bio;
+	public String interest;
+	public int privacy_interest;
+	public void savePersonal() throws IOException {
+		User currUser = userService.findById((int) session.getAttribute("uId"));
+		Set<Userinfo5> curUserinfo5s = currUser.getUserinfo5s();
+		if (curUserinfo5s.size() < 1) {
+			Userinfo5 newUserinfo5 = new Userinfo5();
+			newUserinfo5.setUser(currUser);
+			newUserinfo5.setUaddress(privacy_address + "_" + address);
+			newUserinfo5.setUzipcode(privacy_zipcode + "_" + zipcode);
+			newUserinfo5.setUbio(privacy_bio + "_" + bio);
+			newUserinfo5.setUinterest(privacy_interest + "_" + interest);
+			userinfo5Service.save(newUserinfo5);
+		} else {
+			Userinfo5 newUserinfo5 = (Userinfo5) curUserinfo5s.toArray()[0];
+			newUserinfo5.setUaddress(privacy_address + "_" + address);
+			newUserinfo5.setUzipcode(privacy_zipcode + "_" + zipcode);
+			newUserinfo5.setUbio(privacy_bio + "_" + bio);
+			newUserinfo5.setUinterest(privacy_interest + "_" + interest);
+			userinfo5Service.updateObject(newUserinfo5);
+
+		}
 		response.sendRedirect("bbs!showPersonalCenter.action");
 	}
 }

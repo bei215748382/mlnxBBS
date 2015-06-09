@@ -9,29 +9,28 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * Userinfo entities. Transaction control of the save(), update() and delete()
+ * Userinfo2 entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.mlnxBBS.core.Userinfo
+ * @see com.mlnxBBS.core.Userinfo2
  * @author MyEclipse Persistence Tools
  */
-public class UserinfoDAO extends BaseHibernateDAO {
+public class Userinfo2DAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory
-			.getLogger(UserinfoDAO.class);
+			.getLogger(Userinfo2DAO.class);
 	// property constants
-	public static final String UREALNAME = "urealname";
-	public static final String USEX = "usex";
-	public static final String URESIDENCE = "uresidence";
-	public static final String UBIRTHDAY = "ubirthday";
-	public static final String UBIRTHPLACE = "ubirthplace";
-	public static final String UREMARK1 = "uremark1";
-	public static final String UREMARK2 = "uremark2";
+	public static final String UMOBILE = "umobile";
+	public static final String UQQ = "uqq";
+	public static final String UEMAIL = "uemail";
+	public static final String UTELEPHONE = "utelephone";
+	public static final String UMSN = "umsn";
+	public static final String UTAOBAO = "utaobao";
 
-	public void save(Userinfo transientInstance) {
-		log.debug("saving Userinfo instance");
+	public void save(Userinfo2 transientInstance) {
+		log.debug("saving Userinfo2 instance");
 		try {
 			getSession().save(transientInstance);
 			log.debug("save successful");
@@ -41,8 +40,8 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void delete(Userinfo persistentInstance) {
-		log.debug("deleting Userinfo instance");
+	public void delete(Userinfo2 persistentInstance) {
+		log.debug("deleting Userinfo2 instance");
 		try {
 			getSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -52,11 +51,11 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public Userinfo findById(java.lang.Integer id) {
-		log.debug("getting Userinfo instance with id: " + id);
+	public Userinfo2 findById(java.lang.Integer id) {
+		log.debug("getting Userinfo2 instance with id: " + id);
 		try {
-			Userinfo instance = (Userinfo) getSession().get(
-					"com.mlnxBBS.core.Userinfo", id);
+			Userinfo2 instance = (Userinfo2) getSession().get(
+					"com.mlnxBBS.core.Userinfo2", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -64,11 +63,11 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Userinfo> findByExample(Userinfo instance) {
-		log.debug("finding Userinfo instance by example");
+	public List<Userinfo2> findByExample(Userinfo2 instance) {
+		log.debug("finding Userinfo2 instance by example");
 		try {
-			List<Userinfo> results = (List<Userinfo>) getSession()
-					.createCriteria("com.mlnxBBS.core.Userinfo")
+			List<Userinfo2> results = (List<Userinfo2>) getSession()
+					.createCriteria("com.mlnxBBS.core.Userinfo2")
 					.add(create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -80,10 +79,10 @@ public class UserinfoDAO extends BaseHibernateDAO {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Userinfo instance with property: " + propertyName
+		log.debug("finding Userinfo2 instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Userinfo as model where model."
+			String queryString = "from Userinfo2 as model where model."
 					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
@@ -94,38 +93,34 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<Userinfo> findByUrealname(Object urealname) {
-		return findByProperty(UREALNAME, urealname);
+	public List<Userinfo2> findByUmobile(Object umobile) {
+		return findByProperty(UMOBILE, umobile);
 	}
 
-	public List<Userinfo> findByUsex(Object usex) {
-		return findByProperty(USEX, usex);
+	public List<Userinfo2> findByUqq(Object uqq) {
+		return findByProperty(UQQ, uqq);
 	}
 
-	public List<Userinfo> findByUresidence(Object uresidence) {
-		return findByProperty(URESIDENCE, uresidence);
+	public List<Userinfo2> findByUemail(Object uemail) {
+		return findByProperty(UEMAIL, uemail);
 	}
 
-	public List<Userinfo> findByUbirthday(Object ubirthday) {
-		return findByProperty(UBIRTHDAY, ubirthday);
+	public List<Userinfo2> findByUtelephone(Object utelephone) {
+		return findByProperty(UTELEPHONE, utelephone);
 	}
 
-	public List<Userinfo> findByUbirthplace(Object ubirthplace) {
-		return findByProperty(UBIRTHPLACE, ubirthplace);
+	public List<Userinfo2> findByUmsn(Object umsn) {
+		return findByProperty(UMSN, umsn);
 	}
 
-	public List<Userinfo> findByUremark1(Object uremark1) {
-		return findByProperty(UREMARK1, uremark1);
-	}
-
-	public List<Userinfo> findByUremark2(Object uremark2) {
-		return findByProperty(UREMARK2, uremark2);
+	public List<Userinfo2> findByUtaobao(Object utaobao) {
+		return findByProperty(UTAOBAO, utaobao);
 	}
 
 	public List findAll() {
-		log.debug("finding all Userinfo instances");
+		log.debug("finding all Userinfo2 instances");
 		try {
-			String queryString = "from Userinfo";
+			String queryString = "from Userinfo2";
 			Query queryObject = getSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {
@@ -134,10 +129,10 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public Userinfo merge(Userinfo detachedInstance) {
-		log.debug("merging Userinfo instance");
+	public Userinfo2 merge(Userinfo2 detachedInstance) {
+		log.debug("merging Userinfo2 instance");
 		try {
-			Userinfo result = (Userinfo) getSession().merge(detachedInstance);
+			Userinfo2 result = (Userinfo2) getSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -146,8 +141,8 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachDirty(Userinfo instance) {
-		log.debug("attaching dirty Userinfo instance");
+	public void attachDirty(Userinfo2 instance) {
+		log.debug("attaching dirty Userinfo2 instance");
 		try {
 			getSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -157,8 +152,8 @@ public class UserinfoDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachClean(Userinfo instance) {
-		log.debug("attaching clean Userinfo instance");
+	public void attachClean(Userinfo2 instance) {
+		log.debug("attaching clean Userinfo2 instance");
 		try {
 			getSession().buildLockRequest(LockOptions.NONE).lock(instance);
 			log.debug("attach successful");
