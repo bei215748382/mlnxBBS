@@ -5,6 +5,9 @@
 body {
   font: 12px/1.5 Tahoma, "Microsoft Yahei", "Simsun";
   background-color: #eee;
+  background-image: url("../images/bbs_bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .head-size {

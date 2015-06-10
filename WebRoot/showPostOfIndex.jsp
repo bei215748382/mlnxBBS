@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <c:forEach items="${posts }" var="pos">
-  <div class="bg-white" style="height: 220px; margin-top: 15px;">
+  <div class="bg-white border-blue" style="height: 220px; margin-top: 15px;">
     <div class="col-sm-5">
       <img src="/docs/upload/${pos[1].uicon1 }" style="height: 220px;">
     </div>

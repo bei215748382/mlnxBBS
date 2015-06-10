@@ -1,0 +1,46 @@
+* {
+  word-wrap: break-word;
+}
+
+body {
+  font: 16px/1.5 Tahoma, "Microsoft Yahei", "Simsun";
+  background-color: #eee;
+  background-image: url("../images/bbs_bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+}
+
+.navbar-bg {
+  /*  background-image: url("../images/nav_bg.jpg");*/
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+}
+
+.container {
+  margin-top: 85px;
+}
+
+.border-blue {
+  border-left: 4px solid rgba(83, 163, 206,0.78);
+  border-top: 2px solid rgba(83, 163, 206,0.78);
+}
+
+.border-green {
+  border-top: 1px solid #3BE077;
+}
+
+.bg-grey {
+  background-color: rgb(230, 224, 224);
+}
+.bg-white:hover{
+  color:grey;
+   background-color:rgb(247, 242, 242);
+}
+
+em{
+  font-style: normal;
+}

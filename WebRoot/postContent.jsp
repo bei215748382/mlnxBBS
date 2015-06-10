@@ -26,71 +26,11 @@
 <link href="css/font-awesome.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-
-  <nav class="navbar navbar-default" style="height: 70px;"
-    role="navigation">
-    <div class="navbar-header left">
-      <c:forEach items="${headers }" var="hea">
-        <a class="navbar-brand" href="#"><img
-          src="/docs/upload/${hea.logoImg }"
-          style="height: 50px; margin-top: -7.5px;"></a>
-      </c:forEach>
-    </div>
-    <div>
-      <ul class="nav navbar-nav head-size " style="font-size: 20px;">
-        <c:forEach items="${BBSNavs }" var="bnav">
-          <c:if test="${bnav.navName=='首页' }">
-            <li><a href="bbs!showBBSIndex.action">${bnav.navName
-                }</a></li>
-          </c:if>
-          <c:if test="${bnav.navName=='产品' }">
-            <li><a href="bbs!showPostAll.action?type=1">${bnav.navName
-                }</a></li>
-          </c:if>
-          <c:if test="${bnav.navName=='体验' }">
-            <li><a href="bbs!showPostAll.action?type=2">${bnav.navName
-                }</a></li>
-          </c:if>
-          <c:if test="${bnav.navName=='问题' }">
-            <li><a href="bbs!showPostAll.action?type=3">${bnav.navName
-                }</a></li>
-          </c:if>
-
-        </c:forEach>
-      </ul>
-      <p class="navbar-text navbar-right head-size right"
-        style="margin-right: 0px;">
-        <c:if test="${sessionScope.uId==null }">
-          <a href="bbs!showBBSLogin.action">登录</a>
-          &emsp;
-          <a href="">注册</a>
-        </c:if>
-        <c:if test="${sessionScope.uId!=null }">
-        欢迎 <a href="bbs!showPersonalCenter.action" class="navbar-link"><img
-            src="/docs/upload/${sessionScope.uIcon }">${sessionScope.uAgname
-            }</a>
-          <a href="bbs!bbsLogout.action">注销</a>
-        </c:if>
-      </p>
-      <form class="navbar-form navbar-right head-size hid" role="search">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search"
-            style="border: 0px" id="key"> <span
-            class="input-group-addon"
-            style="border: 0px; background-color: #fff;"><a
-            onclick="saveKey()" href="bbs!doSearch.action"
-            target="_blank"><img src="images/search.ico"
-              height="20px;" /></a></span>
-        </div>
-
-      </form>
-    </div>
-  </nav>
-
+<jsp:include page="jsp/header.jsp"></jsp:include>
   <div class="container">
     <div class="row">
       <div class="col-sm-9">
-        <div class="bg-white">
+        <div class="bg-white border-blue">
           <div id="content_title" class="pd20">
             <a><img src="/docs/upload/${post.user.uicon2 }" alt="头像"
               width=80px /></a>
@@ -179,26 +119,37 @@
           </div>
           <div>
             <div class="tshare">
-              <b>分享到:&nbsp;</b>
+              <!-- JiaThis Button BEGIN -->
+              <div class="jiathis_style">
+                <span class="jiathis_txt">分享到：</span> <a
+                  class="jiathis_button_tools_1"></a> <a
+                  class="jiathis_button_tools_2"></a> <a
+                  class="jiathis_button_tools_3"></a> <a
+                  class="jiathis_button_tools_4"></a> <a
+                  href="http://www.jiathis.com/share"
+                  class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis"
+                  target="_blank">更多</a> <a
+                  class="jiathis_counter_style"></a>
+              </div>
+              <script type="text/javascript"
+                src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+              <!-- JiaThis Button END -->
             </div>
           </div>
           <div>
             <div class="pob cl" style="margin-bottom: 20px">
-              <em> <a class="fastre" href="#doResponse">回复</a>
-              </em>
-              <p>
+               <a class="fastre" href="#doResponse">回复</a>
                 <a style="display: none;" href="javascript:;"
                   id="mgc_post_88879" onmouseover="showMenu(this.id)"
                   class="showmenu"></a> <a href="javascript:;"
                   onclick="showWindow('miscreport88879', 'misc.php?mod=report&amp;rtype=post&amp;rid=88879&amp;tid=7492&amp;fid=2', 'get', -1);return false;">举报</a>
-              </p>
             </div>
 
           </div>
         </div>
 
         <div id="showRsp">
-          <div class="bg-white comment">
+          <div class="bg-white comment border-blue">
             <ul class="list-unstyled">
               <c:forEach items="${responses }" var="rsp">
                 <li><div class="col-sm-9 bg-white pd15">
@@ -211,8 +162,8 @@
 
                     </p>
                   </div>
-                  <div class="col-sm-3 bg-white pd15">
-                    <div style="height: 60px; float: right;">
+                  <div class="col-sm-3 bg-white pd15 ">
+                    <div style="height: 68px; float: right;">
                       <f:formatDate value="${rsp[3] }"
                         pattern="yyyy-MM-dd HH:mm:ss" />
                       &emsp; <span id="position">${rsp[0] }楼</span>
@@ -220,12 +171,12 @@
                   </div>
                   <div class="pd15" style="margin-left: 75px">${rsp[2]
                     }</div>
-                  <div>
+                  <div  class="pd15" style="margin-left: 75px">
                     <c:set scope="page" value="0" var="num"></c:set>
                     <c:forEach items="${childResponses }" var="cRsp">
                       <c:if test="${cRsp[0] == rsp[0] }">
                         <c:if test="${num < 5 }">
-                          <div>
+                          <div  class="pd15 bg-grey">
                             <c:if test="${sessionScope.uId==null }">
                               <img
                                 src="/docs/upload/${cRsp[1].uicon3
@@ -252,7 +203,7 @@
                                 onclick="showRspToU('${cRsp[1].uagname
                             }', '${rsp[0] }', '${post.poId }', '${cRsp[1].uid }')"
                                 style="cursor: pointer;">${cRsp[1].uagname
-                                }</a>&emsp;To&emsp;<img
+                                }</a>&nbsp;回复&nbsp;<img
                                 src="/docs/upload/${cRsp[2].uicon3
                         }"
                                 style="width: 16px" />
@@ -385,7 +336,7 @@
       </div>
 
       <div class="col-sm-3">
-        <div class="bg-white" style="height: 100%; margin-top: -11px">
+        <div class="bg-white border-blue" style="height: 100%;">
           <div class="pd15">
             <span class="topic">xxx的最新主题</span><br>
             <hr>
@@ -432,80 +383,21 @@
   </div>
 
 
-  <div class="footer bg-white">
-    <div class="row">
-      <div class="col-xs-4 col-xs-offset-2 col-sm-3">
-        <c:forEach items="${qrcode1 }" var="qr1">
-          <img src="/docs/upload/${qr1.qrImg }" class="img-responsive"
-            alt="nbmlnx_service" width="90px" align="bottom">
-          <p style="font-size: 11px; margin: 12px;">${qr1.qrName }</p>
-        </c:forEach>
-      </div>
-
-      <div class="col-xs-4 col-sm-3">
-        <c:forEach items="${qrcode2 }" var="qr2">
-          <img src="/docs/upload/${qr2.qrImg }" class="img-responsive"
-            alt="nbmlnx_service" width="90px" align="bottom">
-          <p style="font-size: 11px; margin: 12px;">${qr2.qrName }</p>
-        </c:forEach>
-      </div>
-      <div class="col-xs-12 col-sm-3">
-        <address class="hidden-xs">
-          <strong style="font-size: 20px;">宁波市美灵思医疗科技有限公司</strong><br>
-          <c:forEach items="${contact }" var="ct">
-        地址：<a href="http://j.map.baidu.com/9FV9x" target="_blank">${ct.ctAdress
-              }</a>
-            <br>
-        电话：<a href="tel:${ct.ctPhone }">${ct.ctPhone }</a>
-            <br> 传真：<a href="tel:${ct.ctFax }">${ct.ctFax }</a>
-            <br> 邮箱：<a href="${ct.ctEmail }">${ct.ctEmail }</a>
-            <br>
-          </c:forEach>
-          <a href="http://weibo.com/u/1950616540" target="_blank"
-            style="color: #c19b85">微博关注</a>
-        </address>
-      </div>
-      <div class="center visible-xs">
-        <address>
-          <strong style="font-size: 20px;">宁波市美灵思医疗科技有限公司</strong><br>
-          <c:forEach items="${contact }" var="ct">
-        地址：<a href="http://j.map.baidu.com/9FV9x" target="_blank">${ct.ctAdress
-              }</a>
-            <br>
-        电话：<a href="tel:${ct.ctPhone }">${ct.ctPhone }</a>
-            <br> 传真：<a href="tel:${ct.ctFax }">${ct.ctFax }</a>
-            <br> 邮箱：<a href="${ct.ctEmail }">${ct.ctEmail }</a>
-            <br>
-          </c:forEach>
-          <a href="http://weibo.com/u/1950616540" target="_blank"
-            style="color: #c19b85">微博关注</a>
-        </address>
-      </div>
-      <div class="col-xs-12">
-        <div class="center">
-          <c:forEach items="${copyright }" var="cop">
-            <p style="font-size: 10px">
-              © 2015 Power by <a href="http://www.nbmlnx.com"
-                target="_blank">${cop.cpDetail }</a>
-            </p>
-          </c:forEach>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
   <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
   <!-- 包括所有已编译的插件 -->
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/bbs_init.js"></script>
+  <jsp:include page="jsp/footer.jsp"></jsp:include>
   <script type="text/javascript" src="js/mybbs.js"></script>
   <script type="text/javascript" src="CLEditor1_3_0/jquery.min.js"></script>
   <script type="text/javascript"
     src="CLEditor1_3_0/jquery.cleditor.min.js"></script>
   <script type="text/javascript">
-			$(document).ready(function() {
-				$("#response").cleditor();
-			});
+  $(document).ready(function() {
+      $("#response").cleditor({
+        width:  $("#doPost").width()
+          });
+    });
 		</script>
 </body>
 </html>

@@ -81,7 +81,7 @@
                 <tr id="tr_birthday">
                   <th id="th_birthday">生日</th>
                   <td id="td_birthday"><input type="date"
-                    name="birthday" value="">
+                    name="birthday" value="" style="line-height: normal;">
                     <p class="d"></p></td>
                   <td class="p"><select name="privacy_birthday">
                       <option value="0">公开</option>

@@ -6,7 +6,7 @@
 <c:forEach items="${mores }" var="mor">
   <c:if test="${mor[0] == position }">
     <c:if test="${num < 5 }">
-      <div>
+      <div class="pd15 bg-grey">
         <c:if test="${sessionScope.uId==null }">
           <img
             src="/docs/upload/${mor[1].uicon3
@@ -30,7 +30,7 @@
           <a
             onclick="showRspToU('${mor[1].uagname
                             }', '${position }', '${poId }', '${mor[1].uid }')"
-            style="cursor: pointer;">${mor[1].uagname }</a>&emsp;To&emsp;<img
+            style="cursor: pointer;">${mor[1].uagname }</a>&nbsp;回复&nbsp;<img
             src="/docs/upload/${mor[2].uicon3
                         }"
             style="width:16px" />
