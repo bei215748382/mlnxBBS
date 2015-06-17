@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import com.mlnxBBS.service.BannerService;
 import com.mlnxBBS.service.EventService;
 import com.mlnxBBS.service.HeaderService;
+import com.mlnxBBS.service.MailService;
 import com.mlnxBBS.service.PageService;
 import com.mlnxBBS.service.ContactService;
 import com.mlnxBBS.service.CopyrightService;
@@ -56,6 +57,7 @@ public class BBSAction extends BaseAction {
 	Userinfo3Service userinfo3Service = new Userinfo3Service();
 	Userinfo4Service userinfo4Service = new Userinfo4Service();
 	Userinfo5Service userinfo5Service = new Userinfo5Service();
+	MailService mailService = new MailService();
 
 	/**
 	 * 显示论坛主页
@@ -124,7 +126,6 @@ public class BBSAction extends BaseAction {
 									}
 								}
 							}
-
 							session.setAttribute("uId", uId);
 							session.setAttribute("uAgname", user.getUagname());
 						}
@@ -132,6 +133,15 @@ public class BBSAction extends BaseAction {
 				}
 			}
 
+		}
+
+		// 如果当前有用户登录，查询其未读邮件数量
+		if (session.getAttribute("uId") != null) {
+			String sql = "select * from mail where receiveUid = ? and mStatus = ?";
+			@SuppressWarnings("rawtypes")
+			SortedMap[] mails = mailService.executeQuery(sql, new Object[]{
+					session.getAttribute("uId"), 0});
+			request.setAttribute("mailCount", mails.length);
 		}
 
 		// 显示当前日期
@@ -504,6 +514,15 @@ public class BBSAction extends BaseAction {
 	public int type;
 
 	public void showPostAll() {
+		// 如果当前有用户登录，查询其未读邮件数量
+		if (session.getAttribute("uId") != null) {
+			String sql = "select * from mail where receiveUid = ? and mStatus = ?";
+			@SuppressWarnings("rawtypes")
+			SortedMap[] mails = mailService.executeQuery(sql, new Object[]{
+					session.getAttribute("uId"), 0});
+			request.setAttribute("mailCount", mails.length);
+		}
+
 		// 显示logo
 		@SuppressWarnings("rawtypes")
 		SortedMap[] headers = headerService.executeQuery(
@@ -604,6 +623,15 @@ public class BBSAction extends BaseAction {
 	public int poId;
 
 	public void showPostContent() {
+		// 如果当前有用户登录，查询其未读邮件数量
+		if (session.getAttribute("uId") != null) {
+			String sql = "select * from mail where receiveUid = ? and mStatus = ?";
+			@SuppressWarnings("rawtypes")
+			SortedMap[] mails = mailService.executeQuery(sql, new Object[]{
+					session.getAttribute("uId"), 0});
+			request.setAttribute("mailCount", mails.length);
+		}
+
 		// 查询是否点赞
 		if (session.getAttribute("uId") == null) {
 			request.setAttribute("praise", 0);
@@ -728,6 +756,15 @@ public class BBSAction extends BaseAction {
 	 * 查询
 	 */
 	public void doSearch() {
+		// 如果当前有用户登录，查询其未读邮件数量
+		if (session.getAttribute("uId") != null) {
+			String sql = "select * from mail where receiveUid = ? and mStatus = ?";
+			@SuppressWarnings("rawtypes")
+			SortedMap[] mails = mailService.executeQuery(sql, new Object[]{
+					session.getAttribute("uId"), 0});
+			request.setAttribute("mailCount", mails.length);
+		}
+
 		// 显示当前日期
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd EEEE");// 设置日期格式
 		String date = df.format(new Date());// new Date()为获取当前系统时间
@@ -838,6 +875,15 @@ public class BBSAction extends BaseAction {
 	 * 显示个人中心页面
 	 */
 	public void showPersonalCenter() {
+		// 如果当前有用户登录，查询其未读邮件数量
+		if (session.getAttribute("uId") != null) {
+			String sql = "select * from mail where receiveUid = ? and mStatus = ?";
+			@SuppressWarnings("rawtypes")
+			SortedMap[] mails = mailService.executeQuery(sql, new Object[]{
+					session.getAttribute("uId"), 0});
+			request.setAttribute("mailCount", mails.length);
+		}
+
 		// 显示logo
 		@SuppressWarnings("rawtypes")
 		SortedMap[] headers = headerService.executeQuery(

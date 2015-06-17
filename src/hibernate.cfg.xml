@@ -38,6 +38,7 @@
     <mapping class="com.mlnxBBS.core.Userinfo3" />
     <mapping class="com.mlnxBBS.core.Userinfo4" />
     <mapping class="com.mlnxBBS.core.Userinfo5" />
+    <mapping class="com.mlnxBBS.core.Mail" />
   </session-factory>
 
 </hibernate-configuration>

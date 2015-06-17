@@ -18,19 +18,19 @@
       <c:forEach items="${BBSNavs }" var="bnav">
         <c:if test="${bnav.navName=='首页' }">
           <li><a href="bbs!showBBSIndex.action">${bnav.navName
-                }</a></li>
+              }</a></li>
         </c:if>
         <c:if test="${bnav.navName=='产品' }">
           <li><a href="bbs!showPostAll.action?type=1">${bnav.navName
-                }</a></li>
+              }</a></li>
         </c:if>
         <c:if test="${bnav.navName=='体验' }">
           <li><a href="bbs!showPostAll.action?type=2">${bnav.navName
-                }</a></li>
+              }</a></li>
         </c:if>
         <c:if test="${bnav.navName=='问题' }">
           <li><a href="bbs!showPostAll.action?type=3">${bnav.navName
-                }</a></li>
+              }</a></li>
         </c:if>
 
       </c:forEach>
@@ -46,7 +46,8 @@
       <c:if test="${sessionScope.uId!=null }">
         欢迎 <a href="bbs!showPersonalCenter.action" class="navbar-link"><img
           src="/docs/upload/${sessionScope.uIcon }">${sessionScope.uAgname
-            }</a>
+          }</a>
+        <span>未读：${mailCount }</span>
         <a href="bbs!bbsLogout.action">注销</a>
       </c:if>
     </p>

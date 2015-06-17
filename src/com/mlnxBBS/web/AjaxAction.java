@@ -658,4 +658,8 @@ public class AjaxAction extends BaseAction {
 
 	}
 
+	public void showMail() {
+		System.out.println("111");
+	}
+
 }
