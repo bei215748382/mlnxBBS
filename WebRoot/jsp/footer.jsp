@@ -62,7 +62,7 @@ $(".navbar-fixed-top").autoHidingNavbar({
           <c:forEach items="${copyright }" var="cop">
             <p style="font-size: 10px">
               © 2015 Power by <a href="http://www.nbmlnx.com"
-                target="_blank">${cop.cpDetail }</a>
+                target="_blank">${cop.cpDetail }</a>&nbsp;&nbsp;备案号：<a href="http://www.miitbeian.gov.cn/">浙ICP备13006704号-2</a>
             </p>
           </c:forEach>
         </div>
